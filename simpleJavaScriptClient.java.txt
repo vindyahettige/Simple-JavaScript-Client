@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>web-client</title>
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnCallWebService1").click(function (event) {
+                //var xmlhttp = new XMLHttpRequest();
+                var wsUrl = "http://localhost:8080/myProject/services/CitizenService/getPersonsByNIC";
+
+                // build SOAP request
+                var sr = '<?xml version="1.0" encoding="utf-8"?>' +
+                        '<soapenv:Envelope ' +
+                        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
+                        'xmlns:api="http://localhost:8080/myProject/services/xsd/" ' +
+                        'xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' +
+                        'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' +
+                        '<soapenv:Body>' +
+                        '<api:some_api_call soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">' +
+                        '<nic xsi:type="xsd:string">' + $("#nic").val() + '</nic>' +
+                        '<userName xsi:type="xsd:string">' + $("#userName1").val() + '</userName>' +
+                        '<password xsi:type="xsd:string">' + $("#password1").val() + '</password>' +
+                        '</api:some_api_call>' +
+                        '</soapenv:Body>' +
+                        '</soapenv:Envelope>';
+
+
+                alert(sr)
+                $.ajax({
+                    type: "POST",
+                    url: wsUrl,
+                    contentType: "text/xml",
+                    dataType: "xml",
+                    data: sr,
+                    success: processSuccess,
+
+                    error: processError
+                });
+
+            });
+            $("#btnCallWebService2").click(function (event) {
+                //var xmlhttp = new XMLHttpRequest();
+                var wsUrl = "http://localhost:8080/myProject/services/DeathAgeService/findPersonWithDeathAge";
+
+                // build SOAP request
+                var sr = '<?xml version="1.0" encoding="utf-8"?>' +
+                        '<soapenv:Envelope ' +
+                        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
+                        'xmlns:api="http://localhost:8080/myProject/services/xsd/" ' +
+                        'xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' +
+                        'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' +
+                        '<soapenv:Body>' +
+                        '<api:some_api_call soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">' +
+                        '<startDate xsi:type="xsd:string">' + $("#startDate").val() + '</startDate>' +
+                        '<endDate xsi:type="xsd:string">' + $("#endDate").val() + '</endDate>' +
+                        '<dsID xsi:type="xsd:string">' + $("#dsID").val() + '</dsID>' +
+                        '<userName xsi:type="xsd:string">' + $("#userName2").val() + '</userName>' +
+                        '<password xsi:type="xsd:string">' + $("#password2").val() + '</password>' +
+                        '</api:some_api_call>' +
+                        '</soapenv:Body>' +
+                        '</soapenv:Envelope>';
+
+
+                alert(sr)
+                $.ajax({
+                    type: "POST",
+                    url: wsUrl,
+                    contentType: "text/xml",
+                    dataType: "xml",
+                    data: sr,
+                    success: processSuccess,
+
+                    error: processError
+                });
+
+            });
+            $("#btnCallWebService3").click(function (event) {
+                //var xmlhttp = new XMLHttpRequest();
+                var wsUrl = "http://localhost:8080/myProject/services/CitizenLifeStatusService/viewLifeStatus";
+
+                // build SOAP request
+                var sr = '<?xml version="1.0" encoding="utf-8"?>' +
+                        '<soapenv:Envelope ' +
+                        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
+                        'xmlns:api="http://localhost:8080/myProject/services/xsd/" ' +
+                        'xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' +
+                        'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' +
+                        '<soapenv:Body>' +
+                        '<api:some_api_call soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">' +
+                        '<personNicOrPin xsi:type="xsd:string">' + $("#personNicOrPin").val() + '</personNicOrPin>' +
+                        '<userName xsi:type="xsd:string">' + $("#userName3").val() + '</userName>' +
+                        '<password xsi:type="xsd:string">' + $("#password3").val() + '</password>' +
+                        '</api:some_api_call>' +
+                        '</soapenv:Body>' +
+                        '</soapenv:Envelope>';
+
+
+                alert(sr)
+                $.ajax({
+                    type: "POST",
+                    url: wsUrl,
+                    contentType: "text/xml",
+                    dataType: "xml",
+                    data: sr,
+                    success: processSuccess,
+
+                    error: processError
+                });
+
+            });
+            $("#btnCallWebService4").click(function (event) {
+                //var xmlhttp = new XMLHttpRequest();
+                var wsUrl = "http://localhost:8080/myProject/services/CitizenCivilStatusService/viewCivilStatus";
+
+                // build SOAP request
+                var sr = '<?xml version="1.0" encoding="utf-8"?>' +
+                        '<soapenv:Envelope ' +
+                        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
+                        'xmlns:api="http://localhost:8080/myProject/services/xsd/" ' +
+                        'xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' +
+                        'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' +
+                        '<soapenv:Body>' +
+                        '<api:some_api_call soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">' +
+                        '<userName xsi:type="xsd:string">' + $("#userName4").val() + '</userName>' +
+                        '<password xsi:type="xsd:string">' + $("#password4").val() + '</password>' +
+                        '<personNic xsi:type="xsd:string">' + $("#personNic").val() + '</personNic>' +
+                        '<personPin xsi:type="xsd:string">' + $("#personPin").val() + '</personPin>' +
+                        '<nameInEnglish xsi:type="xsd:string">' + $("#nameInEnglish").val() + '</nameInEnglish>' +
+
+                        '</api:some_api_call>' +
+                        '</soapenv:Body>' +
+                        '</soapenv:Envelope>';
+
+
+                alert(sr)
+                $.ajax({
+                    type: "POST",
+                    url: wsUrl,
+                    contentType: "text/xml",
+                    dataType: "xml",
+                    data: sr,
+                    success: processSuccess,
+
+                    error: processError
+                });
+
+            });
+			$("#btnCallWebService5").click(function (event) {
+                //var xmlhttp = new XMLHttpRequest();
+                var wsUrl = "http://localhost:8080/myProject/services/RegistrarWithDivisionsService/getRegistrarByDSDivision";
+
+                // build SOAP request
+                var sr = '<?xml version="1.0" encoding="utf-8"?>' +
+                        '<soapenv:Envelope ' +
+                        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
+                        'xmlns:api="http://localhost:8080/myProject/services/xsd/" ' +
+                        'xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' +
+                        'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' +
+                        '<soapenv:Body>' +
+                        '<api:some_api_call soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">' +
+                        '<dsDivisionKey xsi:type="xsd:string">' + $("#dsDivisionKey").val() + '</dsDivisionKey>' +
+						'<type xsi:type="xsd:string">' + $("#type").val() + '</type>' +
+                        '<userName xsi:type="xsd:string">' + $("#userName5").val() + '</userName>' +
+                        '<password xsi:type="xsd:string">' + $("#password5").val() + '</password>' +
+                        '</api:some_api_call>' +
+                        '</soapenv:Body>' +
+                        '</soapenv:Envelope>';
+
+
+                alert(sr)
+                $.ajax({
+                    type: "POST",
+                    url: wsUrl,
+                    contentType: "text/xml",
+                    dataType: "xml",
+                    data: sr,
+                    success: processSuccess,
+
+                    error: processError
+                });
+
+            });
+			$("#btnCallWebService6").click(function (event) {
+                //var xmlhttp = new XMLHttpRequest();
+                var wsUrl = "http://localhost:8080/myProject/services/StatusOfBirthRegistrationService/serviceBirthRegistrationStatus";
+
+                // build SOAP request
+                var sr = '<?xml version="1.0" encoding="utf-8"?>' +
+                        '<soapenv:Envelope ' +
+                        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
+                        'xmlns:api="http://localhost:8080/myProject/services/xsd/" ' +
+                        'xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' +
+                        'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' +
+                        '<soapenv:Body>' +
+                        '<api:some_api_call soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">' +
+                        '<userName xsi:type="xsd:string">' + $("#userName6").val() + '</userName>' +
+                        '<password xsi:type="xsd:string">' + $("#password6").val() + '</password>' +
+                        '<childPin xsi:type="xsd:string">' + $("#childPin").val() + '</childPin>' +
+                        '<childNameInEnglish xsi:type="xsd:string">' + $("#childNameInEnglish").val() + '</childNameInEnglish>' +
+                        '<childOfficialName xsi:type="xsd:string">' + $("#childOfficialName").val() + '</childOfficialName>' +
+
+                        '</api:some_api_call>' +
+                        '</soapenv:Body>' +
+                        '</soapenv:Envelope>';
+
+
+                alert(sr)
+                $.ajax({
+                    type: "POST",
+                    url: wsUrl,
+                    contentType: "text/xml",
+                    dataType: "xml",
+                    data: sr,
+                    success: processSuccess,
+
+                    error: processError
+                });
+
+            });
+			$("#btnCallWebService7").click(function (event) {
+                //var xmlhttp = new XMLHttpRequest();
+                var wsUrl = "http://localhost:8080/myProject/services/VerificationBirthBeforePrintingService/getBirthRegVerification";
+
+                // build SOAP request
+                var sr = '<?xml version="1.0" encoding="utf-8"?>' +
+                        '<soapenv:Envelope ' +
+                        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
+                        'xmlns:api="http://localhost:8080/myProject/services/xsd/" ' +
+                        'xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' +
+                        'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' +
+                        '<soapenv:Body>' +
+                        '<api:some_api_call soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">' +
+                        '<idUKey xsi:type="xsd:string">' + $("#idUKey").val() + '</idUKey>' +
+                        '<userName xsi:type="xsd:string">' + $("#userName7").val() + '</userName>' +
+                        '<password xsi:type="xsd:string">' + $("#password7").val() + '</password>' +
+                        '</api:some_api_call>' +
+                        '</soapenv:Body>' +
+                        '</soapenv:Envelope>';
+
+
+                alert(sr)
+                $.ajax({
+                    type: "POST",
+                    url: wsUrl,
+                    contentType: "text/xml",
+                    dataType: "xml",
+                    data: sr,
+                    success: processSuccess,
+
+                    error: processError
+                });
+
+            });
+        });
+
+        function processSuccess(data, status, req) {
+            alert('success');
+            if (status == "success") {
+
+                //$('#response').html($(req.responseText).find('#Result').html());
+                // var out='<p>'+req.responseText+'</p>';
+                alert(req.responseText);
+                var tempdiv = document.createElement("out");
+                tempdiv.innerHTML = req.responseText;
+            }
+        }
+        function processError(data, status, req) {
+            alert('err' + data.state);
+            //alert(req.responseText + " " + status);
+        }
+
+    </script>
+</head>
+<body background="images/client_background.jpg" >
+
+<h1 align="center"><b>WEB CLIENT </b></h1>
+<div>
+
+<h3>
+    Citizen Web Service for a given NIC.
+</h3>
+
+
+    <form autocomplete="off">
+        <table>
+
+            <tr>
+                <td align="right">NIC:</td>
+
+                <td align="left"><input id="nic" type="text" name="nic"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">User Name:</td>
+
+                <td align="left"><input id="userName1" type="text" name="userName"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">Password:</td>
+
+                <td align="left"><input id="password1" type="password" name="password"/></td>
+            </tr>
+            <tr>
+                <td align="left"><input id="btnCallWebService1" value="Call web service" type="button"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<div>
+
+    <h3>
+        Web service for get persons details who have died after 55 years old.
+    </h3>
+
+
+    <form autocomplete="off">
+        <table>
+
+            <tr>
+                <td align="right">Start Date:</td>
+
+                <td align="left"><input id="startDate" type="text" name="StartDate"/></td>
+            </tr>
+            <tr>
+                <td align="right">End Date:</td>
+
+                <td align="left"><input id="endDate" type="text" name="EndDate"/></td>
+            </tr>
+            <tr>
+                <td align="right">Division Id:</td>
+
+                <td align="left"><input id="dsID" type="text" name="dsID"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">User Name:</td>
+
+                <td align="left"><input id="userName2" type="text" name="userName"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">Password:</td>
+
+                <td align="left"><input id="password2" type="password" name="password"/></td>
+            </tr>
+            <tr>
+                <td align="left"><input id="btnCallWebService2" value="Call web service" type="button"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<div>
+
+    <h3>
+        Web service for getting Life Status of a given person.
+    </h3>
+
+
+    <form autocomplete="off">
+        <table>
+
+            <tr>
+                <td align="right">Person PIN or NIC:</td>
+
+                <td align="left"><input id="personNicOrPin" type="text" name="personNicOrPin"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">User Name:</td>
+
+                <td align="left"><input id="userName3" type="text" name="userName"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">Password:</td>
+
+                <td align="left"><input id="password3" type="password" name="password"/></td>
+            </tr>
+            <tr>
+                <td align="left"><input id="btnCallWebService3" value="Call web service" type="button"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+<div>
+
+    <h3>
+        Web service for getting Civil Status of a given person.
+    </h3>
+
+
+    <form autocomplete="off">
+        <table>
+
+            <tr>
+                <td align="right">Person NIC:</td>
+
+                <td align="left"><input id="personNic" type="text" name="personNic"/></td>
+            </tr>
+            <tr>
+                <td align="right">Person PIN:</td>
+
+                <td align="left"><input id="personPin" type="text" name="personPin"/></td>
+            </tr>
+            <tr>
+                <td align="right">Person Name In English:</td>
+
+                <td align="left"><input id="nameInEnglish" type="text" name="nameInEnglish"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">User Name:</td>
+
+                <td align="left"><input id="userName4" type="text" name="userName"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">Password:</td>
+
+                <td align="left"><input id="password4" type="password" name="password"/></td>
+            </tr>
+            <tr>
+                <td align="left"><input id="btnCallWebService4" value="Call web service" type="button"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<div>
+
+    <h3>
+        Web service to get Registrar details for a given type and given division UKey.
+    </h3>
+
+
+    <form autocomplete="off">
+        <table>
+
+            <tr>
+                <td align="right">DS division UKey:</td>
+
+                <td align="left"><input id="dsDivisionKey" type="text" name="dsDivisionKey"/></td>
+            </tr>
+            <tr>
+                <td align="right">Registrar Type:</td>
+
+                <td align="left"><input id="type" type="text" name="type"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">User Name:</td>
+
+                <td align="left"><input id="userName5" type="text" name="userName"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">Password:</td>
+
+                <td align="left"><input id="password5" type="password" name="password"/></td>
+            </tr>
+            <tr>
+                <td align="left"><input id="btnCallWebService5" value="Call web service" type="button"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<div>
+
+    <h3>
+        Web service for getting status of birth registration.
+    </h3>
+
+
+    <form autocomplete="off">
+        <table>
+			<tr>
+                <td align="right">User Name:</td>
+
+                <td align="left"><input id="userName6" type="text" name="userName"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">Password:</td>
+
+                <td align="left"><input id="password6" type="password" name="password"/></td>
+            </tr>
+            <tr>
+                <td align="right">Child PIN:</td>
+
+                <td align="left"><input id="childPin" type="text" name="childPin"/></td>
+            </tr>
+            <tr>
+                <td align="right">Name In English of Child:</td>
+
+                <td align="left"><input id="childNameInEnglish" type="text" name="childNameInEnglish"/></td>
+            </tr>
+            <tr>
+                <td align="right">Official Name of Child:</td>
+
+                <td align="left"><input id="childOfficialName" type="text" name="childOfficialName"/></td>
+            </tr>
+
+            
+            <tr>
+                <td align="left"><input id="btnCallWebService6" value="Call web service" type="button"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<div>
+
+    <h3>
+        Web service for verification of birth registration.
+    </h3>
+
+
+    <form autocomplete="off">
+        <table>
+			
+            <tr>
+                <td align="right">idUKey:</td>
+
+                <td align="left"><input id="idUKey" type="text" name="idUKey"/></td>
+            </tr>
+            
+			<tr>
+                <td align="right">User Name:</td>
+
+                <td align="left"><input id="userName7" type="text" name="userName"/></td>
+            </tr>
+
+            <tr>
+                <td align="right">Password:</td>
+
+                <td align="left"><input id="password7" type="password" name="password"/></td>
+            </tr>
+            
+            <tr>
+                <td align="left"><input id="btnCallWebService7" value="Call web service" type="button"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+<div id="tempdiv"></div>
+</body>
+</html>
